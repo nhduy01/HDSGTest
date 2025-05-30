@@ -58,4 +58,5 @@ Thêm dữ liệu mẫu.
    2. Import file HDSGTest.postman_collection.json trong thư mục HDSG.
 
    3. Gửi request để kiểm tra các chức năng: đăng ký, đăng nhập, xem thông tin cá nhân, đổi mật khẩu...
-Lưu ý: 
+      
+⚠️ **Lưu ý:** Sau khi đăng nhập, vui lòng sao chép token và sử dụng trong các yêu cầu tiếp theo để đảm bảo các chức năng khác hoạt động chính xác.
