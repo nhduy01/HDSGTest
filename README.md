@@ -58,3 +58,11 @@ Thêm dữ liệu mẫu.
    3. Gửi request để kiểm tra các chức năng: đăng ký, đăng nhập, xem thông tin cá nhân, đổi mật khẩu...
       
 ⚠️ **Lưu ý:** Sau khi đăng nhập, vui lòng sao chép token và sử dụng trong các yêu cầu tiếp theo để đảm bảo các chức năng khác hoạt động chính xác.
+
+### 6. Tài liệu mô hình hệ thống
+
+📁 **Thư mục `HDSG` chứa:**
+- **ERD (Entity Relationship Diagram)**: mô tả cấu trúc bảng trong cơ sở dữ liệu.
+- **Sequence Diagram**: minh họa luồng xử lý đăng nhập, đổi mật khẩu, và các chức năng chính.
+
+👉 Vui lòng mở các file ảnh để tham khảo chi tiết mô hình.
