@@ -1,6 +1,6 @@
 # 📸 Hệ Thống Quản Lý Người Dùng – Spring Boot + OpenCV
 
-# 🚀 Các chức năng:
+# 🚀 Các chức năng chính:
 
    - Đăng ký
    - Đăng nhập (JWT)
