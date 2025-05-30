@@ -4,13 +4,10 @@
 
 🚀 Các chức năng:
 
-Đăng ký
-
-Đăng nhập (JWT)
-
-Xem thông tin cá nhân (gồm ảnh avatar)
-
-Đổi mật khẩu có kiểm tra ảnh xác thực ≥ 85%
+   - Đăng ký
+   - Đăng nhập (JWT)
+   - Xem thông tin cá nhân (gồm ảnh avatar)
+   - Đổi mật khẩu có kiểm tra ảnh xác thực ≥ 85%
 
 ⚙️ Công nghệ sử dụng
 
