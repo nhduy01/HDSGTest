@@ -2,6 +2,7 @@ package com.example.HDSGTest.service;
 
 import com.example.HDSGTest.Exception.AppException;
 import com.example.HDSGTest.Exception.ErrorCode;
+import com.example.HDSGTest.IService.IAuthenticationService;
 import com.example.HDSGTest.dto.response.AuthenticationResponse;
 import com.example.HDSGTest.dto.request.IntrospectRequest;
 import com.example.HDSGTest.dto.request.AuthenticationRequest;
@@ -31,7 +32,7 @@ import java.util.UUID;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Slf4j
 @Service
-public class AuthenticateService {
+public class AuthenticationService implements IAuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -43,7 +44,7 @@ public class AuthenticateService {
         boolean valid = false;
 
         try {
-            verifyToken(token); // Nếu token hợp lệ thì không lỗi
+            verifyToken(token);
             valid = true;
         } catch (RuntimeException e) {
             valid = false;
@@ -55,7 +56,7 @@ public class AuthenticateService {
                 .build();
     }
 
-    private SignedJWT verifyToken(String token) throws JOSEException, ParseException {
+    public SignedJWT verifyToken(String token) throws JOSEException, ParseException {
         JWSVerifier verifier = new MACVerifier(jwtSecret.getBytes());
 
         SignedJWT signedJWT = SignedJWT.parse(token);
@@ -70,7 +71,7 @@ public class AuthenticateService {
         return signedJWT;
     }
 
-    public AuthenticationResponse authenticated(AuthenticationRequest request) {
+    public AuthenticationResponse login(AuthenticationRequest request) {
         var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
 

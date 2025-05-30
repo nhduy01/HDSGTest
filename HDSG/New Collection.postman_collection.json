@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "924b9182-6ce7-43a3-aceb-b03e2b99cc5a",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26030208"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user",
+							"value": "{\"username\":\"testuser\",\"email\":\"test@example.com\",\"password\":\"123\",\"fullName\":\"Test User\"}",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Infomation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMyIsInNjb3BlIjoidXNlciIsImlzcyI6Ik5IRCIsImV4cCI6MTc0ODY3MzYwOSwiaWF0IjoxNzQ4NTg3MjA5LCJ1c2VySWQiOiJlMTgyMzI3ZC04MWViLTRiY2UtOGNiOS02ZWU5NjBjYTQ2YzkiLCJqdGkiOiIwY2I4MzU1OC03NjcyLTQzYTUtYWViYy01OGIzYzU5NmI0ODEiLCJ1c2VybmFtZSI6InVzZXIzIn0.qUxR9VAmijMt-nHfieYTqhq1q3jRBQoXz_hajGyK37Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User Infomation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMyIsInNjb3BlIjoidXNlciIsImlzcyI6Ik5IRCIsImV4cCI6MTc0ODY3MzYwOSwiaWF0IjoxNzQ4NTg3MjA5LCJ1c2VySWQiOiJlMTgyMzI3ZC04MWViLTRiY2UtOGNiOS02ZWU5NjBjYTQ2YzkiLCJqdGkiOiIwY2I4MzU1OC03NjcyLTQzYTUtYWViYy01OGIzYzU5NmI0ODEiLCJ1c2VybmFtZSI6InVzZXIzIn0.qUxR9VAmijMt-nHfieYTqhq1q3jRBQoXz_hajGyK37Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uploadedImage",
+							"type": "file",
+							"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
+						},
+						{
+							"key": "userinfo",
+							"value": "{\n  \"fullName\": \"nguyen van a\",\n  \"email\": \"a@gmail.com\"\n}\n",
+							"contentType": "application/json",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All User Infomation",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ChangePassword",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/compare",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"compare"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"user3\",\r\n  \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/authenticate/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

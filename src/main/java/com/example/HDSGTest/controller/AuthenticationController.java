@@ -1,9 +1,8 @@
 package com.example.HDSGTest.controller;
 
+import com.example.HDSGTest.IService.IAuthenticationService;
 import com.example.HDSGTest.dto.response.AuthenticationResponse;
 import com.example.HDSGTest.dto.request.AuthenticationRequest;
-import com.example.HDSGTest.service.AuthenticateService;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -22,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class AuthenticationController {
-    AuthenticateService authenticateService;
+    IAuthenticationService authenticationService;
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@Validated @RequestBody AuthenticationRequest request) {
-        AuthenticationResponse response = authenticateService.authenticated(request);
+        AuthenticationResponse response = authenticationService.login(request);
         return ResponseEntity.ok(response);
     }
 }

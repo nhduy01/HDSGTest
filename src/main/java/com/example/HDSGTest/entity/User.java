@@ -1,9 +1,7 @@
 package com.example.HDSGTest.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -39,7 +37,7 @@ public class User {
     private byte[] avatar;
 
     @Column(name = "role", length = 50)
-    private String role;  // VD: "ROLE_USER" hoặc "ROLE_ADMIN"
+    private String role;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

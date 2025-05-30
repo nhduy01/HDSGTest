@@ -2,6 +2,7 @@ package com.example.HDSGTest.service;
 
 import com.example.HDSGTest.Exception.AppException;
 import com.example.HDSGTest.Exception.ErrorCode;
+import com.example.HDSGTest.IService.IUserService;
 import com.example.HDSGTest.dto.request.UserCreateRequest;
 import com.example.HDSGTest.dto.request.UserUpdateRequest;
 import com.example.HDSGTest.dto.response.UserResponseDTO;
@@ -21,13 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 
 @Slf4j
 @Service
-public class UserService {
+public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -45,10 +45,19 @@ public class UserService {
             dto.setUsername(user.getUsername());
             dto.setEmail(user.getEmail());
             dto.setFullName(user.getFullName());
-            // Giả sử bạn có endpoint /users/{id}/avatar
             dto.setAvatarUrl("/users/" + user.getId() + "/avatar");
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    public UserResponseDTO getCurrentUserInfo() {
+        User user = getCurrentUser();
+        UserResponseDTO dto = new UserResponseDTO();
+        dto.setId(user.getId());
+        dto.setUsername(user.getUsername());
+        dto.setEmail(user.getEmail());
+        dto.setAvatarUrl("/users/" + user.getId() + "/avatar");
+        return dto;
     }
 
 
@@ -66,10 +75,10 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFullName(request.getFullName());
-        user.setRole("user");
+        user.setRole("ROLE_USER");
 
         if (avatarFile != null && !avatarFile.isEmpty()) {
-            user.setAvatar(avatarFile.getBytes()); // Lưu ảnh dưới dạng byte[]
+            user.setAvatar(avatarFile.getBytes());
         }
 
         return userRepository.save(user);
@@ -81,14 +90,21 @@ public class UserService {
                 .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
     }
 
-    public UserUpdateResponse updateProfile(UserUpdateRequest request) {
-        User user = getCurrentUser(); // Hàm lấy user hiện tại từ SecurityContext
+    public UserUpdateResponse updateProfile(MultipartFile uploadedImage,UserUpdateRequest request) {
+        User user = getCurrentUser();
 
         if (request.getFullName() != null && !request.getFullName().isBlank()) {
             user.setFullName(request.getFullName());
         }
         if (request.getEmail() != null && !request.getEmail().isBlank()) {
             user.setEmail(request.getEmail());
+        }
+        if (uploadedImage != null && !uploadedImage.isEmpty()) {
+            try {
+                user.setAvatar(uploadedImage.getBytes());
+            } catch (IOException e) {
+                throw new RuntimeException("Cannot load image", e);
+            }
         }
 
         userRepository.save(user);
@@ -135,25 +151,17 @@ public class UserService {
         return Imgproc.compareHist(hist1, hist2, Imgproc.CV_COMP_CORREL);
     }
 
-    public byte[] getUserAvatarById(UUID userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
-
-        byte[] avatar = user.getAvatar();
-
-        if (avatar == null || avatar.length == 0) {
-            throw new RuntimeException("Avatar not found for user id: " + userId);
+    public void changePassword(String newPassword,MultipartFile uploadedImage)throws IOException {
+        User user = getCurrentUser();
+        double match = compareImages(uploadedImage.getBytes(),user.getAvatar());
+        if(match>= 0.85) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
+        else {
+            new AppException(ErrorCode.IMAGE_NOT_MATCH);
         }
 
-        return avatar;
-    }
-
-    public void changePasswordById(UUID userId, String newPassword) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
-
-        user.setPassword(passwordEncoder.encode(newPassword));
-        userRepository.save(user);
     }
 
 }

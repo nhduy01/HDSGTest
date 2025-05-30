@@ -1,7 +1,7 @@
 package com.example.HDSGTest.Config;
 
 import com.example.HDSGTest.dto.request.IntrospectRequest;
-import com.example.HDSGTest.service.AuthenticateService;
+import com.example.HDSGTest.service.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class CustomJwtDecoder implements JwtDecoder {
     private String signerKey;
 
     @Autowired
-    private AuthenticateService authenticationService;
+    private AuthenticationService authenticationService;
 
     private NimbusJwtDecoder nimbusJwtDecoder = null;
 
