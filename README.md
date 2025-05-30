@@ -36,15 +36,15 @@ git clone https://github.com/nhduy01/HDSGTest.git
    Thêm `C:\opencv\build\java\x64` (hoặc `x86` tùy hệ điều hành) vào biến `PATH`.
 
 ### 3. Chạy script PostgreSQL
-Mở công cụ quản lý cơ sở dữ liệu (pgAdmin hoặc terminal).
+   1. Mở công cụ quản lý cơ sở dữ liệu (pgAdmin hoặc terminal).
 
-Kết nối đến PostgreSQL và chạy file SQL trong thư mục HDSG để:
+   2. Kết nối đến PostgreSQL và chạy file SQL trong thư mục HDSG để:
 
-Tạo database.
+      - Tạo database.
 
-Tạo bảng users.
+      - Tạo bảng users.
 
-Thêm dữ liệu mẫu.
+      - Thêm dữ liệu mẫu.
 
 ### 4. Chạy Ứng dụng
 
