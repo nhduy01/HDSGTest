@@ -2,14 +2,14 @@
 
 # 📸 Hệ Thống Quản Lý Người Dùng – Spring Boot + OpenCV
 
-#🚀 Các chức năng:
+# 🚀 Các chức năng:
 
    - Đăng ký
    - Đăng nhập (JWT)
    - Xem thông tin cá nhân (gồm ảnh avatar)
    - Đổi mật khẩu có kiểm tra ảnh xác thực ≥ 85%
 
-#⚙️ Công nghệ sử dụng
+# ⚙️ Công nghệ sử dụng
 
 | Thành phần        | Công nghệ                 |
 | ----------------- | ------------------------- |
@@ -20,7 +20,7 @@
 | Công cụ build     | Maven                     |
 
 
-#🛠️ Cài đặt
+# 🛠️ Cài đặt
 
 ### 1. Clone dự án
 git clone https://github.com/nhduy01/HDSGTest.git
