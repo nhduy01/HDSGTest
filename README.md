@@ -31,14 +31,31 @@ git clone https://github.com/nhduy01/HDSGTest.git
 
 🔹 **Nếu bạn dùng Windows**:
 
-1. Tải bản OpenCV tại:  
+   1. Tải bản OpenCV tại:  
    👉 https://opencv.org/releases
 
-2. Giải nén (ví dụ: `C:\opencv`)
+   2. Giải nén (ví dụ: `C:\opencv`)
 
-3. Cấu hình biến môi trường hệ thống:  
+   3. Cấu hình biến môi trường hệ thống:  
    Thêm `C:\opencv\build\java\x64` (hoặc `x86` tùy hệ điều hành) vào biến `PATH`.
 
-### 3. Chạy script PostpreSql nằm trong Folder HDSG
+### 3. Chạy script PostgreSQL
+Mở công cụ quản lý cơ sở dữ liệu (pgAdmin hoặc terminal).
 
-### 4. 
+Kết nối đến PostgreSQL và chạy file SQL trong thư mục HDSG để:
+
+Tạo database.
+
+Tạo bảng users.
+
+Thêm dữ liệu mẫu.
+
+### 4. Chạy Ứng dụng
+
+### 5. Test API với Postman
+   1. Mở Postman.
+
+   2. Import file HDSGTest.postman_collection.json trong thư mục HDSG.
+
+   3. Gửi request để kiểm tra các chức năng: đăng ký, đăng nhập, xem thông tin cá nhân, đổi mật khẩu...
+Lưu ý: 
