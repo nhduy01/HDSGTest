@@ -56,6 +56,7 @@ public class UserService implements IUserService {
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());
         dto.setEmail(user.getEmail());
+        dto.setFullName(user.getFullName());
         dto.setAvatarUrl("/users/" + user.getId() + "/avatar");
         return dto;
     }

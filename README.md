@@ -1,3 +1,6 @@
+
+# HDSGTest
+
 # 📸 Hệ Thống Quản Lý Người Dùng – Spring Boot + OpenCV
 
 # 🚀 Các chức năng chính:
@@ -16,6 +19,7 @@
 | Bảo mật           | Spring Security + JWT     |
 | So khớp ảnh       | OpenCV                    |
 | Công cụ build     | Maven                     |
+
 
 
 # 🛠️ Cài đặt
@@ -64,3 +68,4 @@ git clone https://github.com/nhduy01/HDSGTest.git
 - **Sequence Diagram**: minh họa luồng xử lý đăng nhập, đổi mật khẩu, và các chức năng chính.
 
 👉 Vui lòng mở các file ảnh để tham khảo chi tiết mô hình.
+
