@@ -3,7 +3,6 @@ package com.example.HDSGTest.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
@@ -11,22 +10,22 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "users")
-public class User {
+@Table(name = "users_history")
+public class UserHistory {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
+
+    @Column(nullable = false, length = 50)
     private String username;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     private String email;
 
     @Column(nullable = false, length = 255)
@@ -41,12 +40,19 @@ public class User {
     @Column(name = "role", length = 50)
     private String role;
 
+    @Column(name = "original_created_at")
+    private LocalDateTime originalCreatedAt;
+
+    @Column(name = "original_updated_at")
+    private LocalDateTime originalUpdatedAt;
+
+    @Column(name = "history_created_at", nullable = false, updatable = false)
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime historyCreatedAt;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @Column(name = "action_type", length = 20)
+    private String actionType;
 
+    @Column(name = "updated_by", length = 100)
+    private String updatedBy;
 }

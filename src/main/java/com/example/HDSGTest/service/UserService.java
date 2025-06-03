@@ -7,7 +7,11 @@ import com.example.HDSGTest.dto.request.UserCreateRequest;
 import com.example.HDSGTest.dto.request.UserUpdateRequest;
 import com.example.HDSGTest.dto.response.UserResponseDTO;
 import com.example.HDSGTest.dto.response.UserUpdateResponse;
+import com.example.HDSGTest.entity.SystemSetting;
 import com.example.HDSGTest.entity.User;
+import com.example.HDSGTest.entity.UserHistory;
+import com.example.HDSGTest.repository.SystemSettingRepository;
+import com.example.HDSGTest.repository.UserHistoryRepository;
 import com.example.HDSGTest.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +24,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -29,11 +35,15 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements IUserService {
     private final UserRepository userRepository;
+    private UserHistoryRepository userHistoryRepository;
+    private SystemSettingRepository systemSettingRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,UserHistoryRepository userHistoryRepository, SystemSettingRepository systemSettingRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userHistoryRepository = userHistoryRepository;
+        this.systemSettingRepository = systemSettingRepository;
     }
 
     public List<UserResponseDTO> getAllUsers() {
@@ -93,6 +103,22 @@ public class UserService implements IUserService {
 
     public UserUpdateResponse updateProfile(MultipartFile uploadedImage,UserUpdateRequest request) {
         User user = getCurrentUser();
+        UserHistory history = new UserHistory();
+        history.setId(UUID.randomUUID());
+        history.setUserId(user.getId());
+        history.setUsername(user.getUsername());
+        history.setEmail(user.getEmail());
+        history.setPassword(user.getPassword());
+        history.setFullName(user.getFullName());
+        history.setAvatar(user.getAvatar());
+        history.setRole(user.getRole());
+        history.setOriginalCreatedAt(user.getCreatedAt());
+        history.setOriginalUpdatedAt(user.getUpdatedAt());
+        history.setHistoryCreatedAt(LocalDateTime.now());
+        history.setActionType("UPDATE_PROFILE");
+        history.setUpdatedBy(user.getUsername());  // hoặc ai đang update
+
+        userHistoryRepository.save(history);
 
         if (request.getFullName() != null && !request.getFullName().isBlank()) {
             user.setFullName(request.getFullName());
@@ -154,8 +180,15 @@ public class UserService implements IUserService {
 
     public void changePassword(String newPassword,MultipartFile uploadedImage)throws IOException {
         User user = getCurrentUser();
+
+        SystemSetting faceMatchSetting = systemSettingRepository.findByKey("face_match").orElseThrow(() -> new AppException(ErrorCode.SETTING_NOT_FOUND));
+
+        // Chuyển '85%' -> 0.85
+        String valueStr = faceMatchSetting.getValue().replace("%", "").trim();
+        double threshold = Double.parseDouble(valueStr) / 100.0;
+
         double match = compareImages(uploadedImage.getBytes(),user.getAvatar());
-        if(match>= 0.85) {
+        if(match>= threshold) {
             user.setPassword(passwordEncoder.encode(newPassword));
             userRepository.save(user);
         }
