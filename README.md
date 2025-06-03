@@ -1,30 +1,16 @@
-<<<<<<< HEAD
+
 # HDSGTest
 
 # 📸 Hệ Thống Quản Lý Người Dùng – Spring Boot + OpenCV
 
-🚀 Các chức năng:
-Đăng ký
-
-Đăng nhập (JWT)
-
-Xem thông tin cá nhân (gồm ảnh avatar)
-
-Đổi mật khẩu có kiểm tra ảnh xác thực ≥ 85%
-
-⚙️ Công nghệ sử dụng
-=======
-# 📸 Hệ Thống Quản Lý Người Dùng – Spring Boot + OpenCV
-
 # 🚀 Các chức năng chính:
 
-   - Đăng ký
-   - Đăng nhập (JWT)
-   - Xem thông tin cá nhân (gồm ảnh avatar)
-   - Đổi mật khẩu có kiểm tra ảnh xác thực ≥ 85%
+- Đăng ký
+- Đăng nhập (JWT)
+- Xem thông tin cá nhân (gồm ảnh avatar)
+- Đổi mật khẩu có kiểm tra ảnh xác thực ≥ 85%
 
 # ⚙️ Công nghệ sử dụng
->>>>>>> 937a2e00a4cfcbb37f53441c52d3a72f601bca23
 
 | Thành phần        | Công nghệ                 |
 | ----------------- | ------------------------- |
@@ -35,11 +21,8 @@ Xem thông tin cá nhân (gồm ảnh avatar)
 | Công cụ build     | Maven                     |
 
 
-<<<<<<< HEAD
-🛠️ Cài đặt
-=======
+
 # 🛠️ Cài đặt
->>>>>>> 937a2e00a4cfcbb37f53441c52d3a72f601bca23
 
 ### 1. Clone dự án
 git clone https://github.com/nhduy01/HDSGTest.git
@@ -48,7 +31,6 @@ git clone https://github.com/nhduy01/HDSGTest.git
 
 🔹 **Nếu bạn dùng Windows**:
 
-<<<<<<< HEAD
 1. Tải bản OpenCV tại:  
    👉 https://opencv.org/releases
 
@@ -57,38 +39,26 @@ git clone https://github.com/nhduy01/HDSGTest.git
 3. Cấu hình biến môi trường hệ thống:  
    Thêm `C:\opencv\build\java\x64` (hoặc `x86` tùy hệ điều hành) vào biến `PATH`.
 
-### 3. Chạy script PostpreSql nằm trong Folder HDSG
-
-### 4. 
-=======
-   1. Tải bản OpenCV tại:  
-   👉 https://opencv.org/releases
-
-   2. Giải nén (ví dụ: `C:\opencv`)
-
-   3. Cấu hình biến môi trường hệ thống:  
-   Thêm `C:\opencv\build\java\x64` (hoặc `x86` tùy hệ điều hành) vào biến `PATH`.
-
 ### 3. Chạy script PostgreSQL
-   1. Mở công cụ quản lý cơ sở dữ liệu (pgAdmin hoặc terminal).
+1. Mở công cụ quản lý cơ sở dữ liệu (pgAdmin hoặc terminal).
 
-   2. Kết nối đến PostgreSQL và chạy file SQL trong thư mục HDSG để:
+2. Kết nối đến PostgreSQL và chạy file SQL trong thư mục HDSG để:
 
-      - Tạo database.
+   - Tạo database.
 
-      - Tạo bảng users.
+   - Tạo bảng users.
 
-      - Thêm dữ liệu mẫu.
+   - Thêm dữ liệu mẫu.
 
 ### 4. Chạy Ứng dụng
 
 ### 5. Test API với Postman
-   1. Mở Postman.
+1. Mở Postman.
 
-   2. Import file HDSGTest.postman_collection.json trong thư mục HDSG.
+2. Import file HDSGTest.postman_collection.json trong thư mục HDSG.
 
-   3. Gửi request để kiểm tra các chức năng: đăng ký, đăng nhập, xem thông tin cá nhân, đổi mật khẩu...
-      
+3. Gửi request để kiểm tra các chức năng: đăng ký, đăng nhập, xem thông tin cá nhân, đổi mật khẩu...
+
 ⚠️ **Lưu ý:** Sau khi đăng nhập, vui lòng sao chép token và sử dụng trong các yêu cầu tiếp theo để đảm bảo các chức năng khác hoạt động chính xác.
 
 ### 6. Tài liệu mô hình hệ thống
@@ -98,4 +68,4 @@ git clone https://github.com/nhduy01/HDSGTest.git
 - **Sequence Diagram**: minh họa luồng xử lý đăng nhập, đổi mật khẩu, và các chức năng chính.
 
 👉 Vui lòng mở các file ảnh để tham khảo chi tiết mô hình.
->>>>>>> 937a2e00a4cfcbb37f53441c52d3a72f601bca23
+
