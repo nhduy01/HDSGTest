@@ -9,6 +9,7 @@ public enum ErrorCode {
     ACCOUNT_NOT_FOUND(10002, "Account Not Found", HttpStatus.NOT_FOUND),
     UNAUTHENTICATED(10003, "Unauthenticated", HttpStatus.BAD_REQUEST),
     IMAGE_NOT_MATCH(10004, "Image not match up to 85%", HttpStatus.BAD_REQUEST),
+    SETTING_NOT_FOUND(10005,"Setting not found", HttpStatus.BAD_REQUEST)
     ;
 
     private int code;
