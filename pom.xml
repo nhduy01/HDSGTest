@@ -35,7 +35,6 @@
 			<name>Maven Central</name>
 			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
-
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
@@ -118,10 +117,10 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
+			<groupId>com.github.vladimir-bukhtoyarov</groupId>
+			<artifactId>bucket4j-core</artifactId>
+			<version>7.6.0</version>
 		</dependency>
 	</dependencies>
 

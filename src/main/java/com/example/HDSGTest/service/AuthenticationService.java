@@ -7,6 +7,7 @@ import com.example.HDSGTest.dto.response.AuthenticationResponse;
 import com.example.HDSGTest.dto.request.IntrospectRequest;
 import com.example.HDSGTest.dto.request.AuthenticationRequest;
 import com.example.HDSGTest.dto.response.IntrospectResponse;
+import com.example.HDSGTest.dto.request.RefreshTokenRequest;
 import com.example.HDSGTest.entity.User;
 import com.example.HDSGTest.repository.UserRepository;
 import com.nimbusds.jose.*;
@@ -75,7 +76,6 @@ public class AuthenticationService implements IAuthenticationService {
         var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
 
-        // Match mật khẩu
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
@@ -83,9 +83,35 @@ public class AuthenticationService implements IAuthenticationService {
         var token = generateToken(user, 1);
         var refreshToken = generateToken(user, 365);
 
+        // Lưu refreshToken vào DB
+        user.setRefreshToken(refreshToken);
+        userRepository.save(user);
+
         return AuthenticationResponse.builder()
                 .token(token)
                 .refreshToken(refreshToken)
+                .authenticated(true)
+                .build();
+    }
+
+    public AuthenticationResponse refreshToken(String refreshToken) {
+        // 1. Tìm user theo refreshToken
+        User user = userRepository.findByRefreshToken(refreshToken)
+            .orElseThrow(() -> new AppException(ErrorCode.UNAUTHENTICATED));
+
+        // 2. Kiểm tra hạn của refreshToken (giống verifyToken)
+        try {
+            verifyToken(refreshToken); // Nếu hết hạn sẽ ném exception
+        } catch (Exception e) {
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+        }
+
+        // 3. Sinh access token mới
+        String newAccessToken = generateToken(user, 1);
+
+        return AuthenticationResponse.builder()
+                .token(newAccessToken)
+                .refreshToken(refreshToken) // hoặc sinh refreshToken mới nếu muốn
                 .authenticated(true)
                 .build();
     }
@@ -123,6 +149,19 @@ public class AuthenticationService implements IAuthenticationService {
         return "user";
     }
 
-
-
+    public void logout(String authHeader) {
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            try {
+                SignedJWT signedJWT = SignedJWT.parse(token);
+                String username = signedJWT.getJWTClaimsSet().getSubject();
+                User user = userRepository.findByUsername(username)
+                        .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
+                user.setRefreshToken(null);
+                userRepository.save(user);
+            } catch (Exception e) {
+                throw new AppException(ErrorCode.UNAUTHENTICATED);
+            }
+        }
+    }
 }
