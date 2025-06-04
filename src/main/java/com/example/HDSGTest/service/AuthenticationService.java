@@ -77,6 +77,7 @@ public class AuthenticationService implements IAuthenticationService {
                 .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            log.warn("Failed login attempt for username: {}", request.getUsername());
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
 
@@ -87,6 +88,8 @@ public class AuthenticationService implements IAuthenticationService {
         user.setRefreshToken(refreshToken);
         userRepository.save(user);
 
+        log.info("User {} logged in", user.getUsername());
+
         return AuthenticationResponse.builder()
                 .token(token)
                 .refreshToken(refreshToken)
@@ -95,23 +98,19 @@ public class AuthenticationService implements IAuthenticationService {
     }
 
     public AuthenticationResponse refreshToken(String refreshToken) {
-        // 1. Tìm user theo refreshToken
         User user = userRepository.findByRefreshToken(refreshToken)
             .orElseThrow(() -> new AppException(ErrorCode.UNAUTHENTICATED));
-
-        // 2. Kiểm tra hạn của refreshToken (giống verifyToken)
         try {
-            verifyToken(refreshToken); // Nếu hết hạn sẽ ném exception
+            verifyToken(refreshToken);
         } catch (Exception e) {
+            log.warn("Refresh token failed for user: {}", user.getUsername());
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
-
-        // 3. Sinh access token mới
         String newAccessToken = generateToken(user, 1);
-
+        log.info("User {} refreshed token", user.getUsername());
         return AuthenticationResponse.builder()
                 .token(newAccessToken)
-                .refreshToken(refreshToken) // hoặc sinh refreshToken mới nếu muốn
+                .refreshToken(refreshToken)
                 .authenticated(true)
                 .build();
     }
@@ -159,7 +158,9 @@ public class AuthenticationService implements IAuthenticationService {
                         .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
                 user.setRefreshToken(null);
                 userRepository.save(user);
+                log.info("User {} logged out", username);
             } catch (Exception e) {
+                log.warn("Logout failed: invalid token");
                 throw new AppException(ErrorCode.UNAUTHENTICATED);
             }
         }

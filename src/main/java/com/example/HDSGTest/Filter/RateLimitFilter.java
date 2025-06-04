@@ -6,6 +6,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -17,9 +18,14 @@ public class RateLimitFilter implements Filter {
 
     private final Map<String, Bucket> cache = new ConcurrentHashMap<>();
 
+    @Value("${ratelimit.requests:10}")
+    private int requests;
+    @Value("${ratelimit.duration:1}")
+    private int durationMinutes;
+
     private Bucket newBucket() {
-        Refill refill = Refill.greedy(10, Duration.ofMinutes(1)); // 10 lần / phút
-        Bandwidth limit = Bandwidth.classic(10, refill);
+        Refill refill = Refill.greedy(requests, java.time.Duration.ofMinutes(durationMinutes));
+        Bandwidth limit = Bandwidth.classic(requests, refill);
         return Bucket.builder().addLimit(limit).build();
     }
 

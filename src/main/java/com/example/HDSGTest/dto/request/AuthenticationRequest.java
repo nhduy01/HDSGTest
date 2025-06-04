@@ -1,6 +1,7 @@
 package com.example.HDSGTest.dto.request;
 
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,8 +14,10 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationRequest {
-    @Size(min = 1, max = 20, message = "Username must be 8-20 characters long")
+    @NotBlank(message = "Tên đăng nhập là bắt buộc")
+    @Size(min = 1, max = 20, message = "Tên đăng nhập từ 1 đến 20 ký tự")
     private String username;
-    @Size(min = 1, max = 20, message = "Password must be 8-20 characters long")
+    @NotBlank(message = "Mật khẩu là bắt buộc")
+    @Size(min = 1, max = 20, message = "Mật khẩu từ 1 đến 20 ký tự")
     private String password;
 }
