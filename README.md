@@ -75,5 +75,5 @@ spring.datasource.password=your_password
 - **ERD (Entity Relationship Diagram)**: mô tả cấu trúc bảng trong cơ sở dữ liệu.
 - **Sequence Diagram**: minh họa luồng xử lý đăng nhập, đổi mật khẩu, và các chức năng chính.
 
-👉 Vui lòng mở các file ảnh để tham khảo chi tiết mô hình.
+👉 Vui lòng mở các file trong thư mục `HDSG` để tham khảo chi tiết mô hình hệ thống.
 
