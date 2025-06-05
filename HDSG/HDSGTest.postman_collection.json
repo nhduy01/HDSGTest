@@ -7,198 +7,309 @@
 	},
 	"item": [
 		{
-			"name": "Create User",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "user",
-							"value": "{\"username\":\"testuser\",\"email\":\"test@example.com\",\"password\":\"123\",\"fullName\":\"Test User\"}",
-							"contentType": "application/json",
-							"type": "text"
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
 						},
-						{
-							"key": "avatar",
-							"type": "file",
-							"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get User Infomation",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMyIsInNjb3BlIjoidXNlciIsImlzcyI6Ik5IRCIsImV4cCI6MTc0ODY3MzYwOSwiaWF0IjoxNzQ4NTg3MjA5LCJ1c2VySWQiOiJlMTgyMzI3ZC04MWViLTRiY2UtOGNiOS02ZWU5NjBjYTQ2YzkiLCJqdGkiOiIwY2I4MzU1OC03NjcyLTQzYTUtYWViYy01OGIzYzU5NmI0ODEiLCJ1c2VybmFtZSI6InVzZXIzIn0.qUxR9VAmijMt-nHfieYTqhq1q3jRBQoXz_hajGyK37Q",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Edit User Infomation",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "uploadedImage",
-							"type": "file",
-							"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user",
+									"value": "{\"username\":\"testuser\",\"email\":\"test@example.com\",\"password\":\"123\",\"fullName\":\"Test User\"}",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
+								}
+							]
 						},
-						{
-							"key": "userinfo",
-							"value": "{\n  \"fullName\": \"nguyen van a\",\n  \"email\": \"a@gmail.com\"\n}\n",
-							"contentType": "application/json",
-							"type": "text"
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All User Infomation",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Change Password",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "newPassword",
-							"value": "123",
-							"type": "text"
+				{
+					"name": "Get User Infomation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMyIsInNjb3BlIjoidXNlciIsImlzcyI6Ik5IRCIsImV4cCI6MTc0ODY3MzYwOSwiaWF0IjoxNzQ4NTg3MjA5LCJ1c2VySWQiOiJlMTgyMzI3ZC04MWViLTRiY2UtOGNiOS02ZWU5NjBjYTQ2YzkiLCJqdGkiOiIwY2I4MzU1OC03NjcyLTQzYTUtYWViYy01OGIzYzU5NmI0ODEiLCJ1c2VybmFtZSI6InVzZXIzIn0.qUxR9VAmijMt-nHfieYTqhq1q3jRBQoXz_hajGyK37Q",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "uploadedImage",
-							"type": "file",
-							"src": "/C:/Users/nhduy/OneDrive/Pictures/4.png"
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/users/compare",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"compare"
-					]
+				{
+					"name": "Edit User Infomation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsInNjb3BlIjoidXNlciIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTkhEIiwiZXhwIjoxNzQ5MTg3MDkxLCJpYXQiOjE3NDkxMDA2OTEsInVzZXJJZCI6IjVhZGM5ZGUwLWI1NmItNGQyZS04MGI1LTIyMTIxZDUyNWFmYyIsImp0aSI6IjVmY2Q2Yzg1LTgyOWYtNDlhMC05ZmY3LWU0ZjQwY2Q5MDU3NiIsInVzZXJuYW1lIjoidGVzdHVzZXIifQ.ZgqlX9sNLjK_onk-vvjOCsj_IZloJwxM2i422Ml7eF8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user",
+									"value": "{\n  \"fullName\": \"nguyen van b\",\n  \"email\": \"a@gmail.com\"\n}\n",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User Infomation",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "newPassword",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "uploadedImage",
+									"type": "file",
+									"src": "/C:/Users/nhduy/OneDrive/Pictures/4.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/compare",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"compare"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"user3\",\r\n  \"password\": \"123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"user3\",\r\n  \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/authenticate/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/authenticate/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"authenticate",
-						"login"
-					]
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwic2NvcGUiOiJ1c2VyIiwiaXNzIjoiTkhEIiwiZXhwIjoxNzQ5MTgxNzM3LCJpYXQiOjE3NDkwOTUzMzcsInVzZXJJZCI6Ijg3YjU3OWJmLTE5NGEtNDllNS04NzA3LWRhNjg2NWI3ZTlmZiIsImp0aSI6ImVmMWI1MWVjLWNlMTktNGU5OC1hYjA1LWU4YTU2YWRkZmEyYSIsInVzZXJuYW1lIjoidXNlciJ9.DhuimZZRFm7dtDZ4nKJscFCD0agQpENIzMkzToHgC_4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/authenticate/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsInNjb3BlIjoidXNlciIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTkhEIiwiZXhwIjoxNzgwNjM3MTI0LCJpYXQiOjE3NDkxMDExMjQsInVzZXJJZCI6IjVhZGM5ZGUwLWI1NmItNGQyZS04MGI1LTIyMTIxZDUyNWFmYyIsImp0aSI6ImI1NDA3ZDc0LWE3Y2YtNDEzYS05MzVhLWQxY2MxODA4YmQzOSIsInVzZXJuYW1lIjoidGVzdHVzZXIifQ.gz1NPAQGZx5s9wXv1KZFgFYmFNNt3qH12gul_UUSDio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/authenticate/refresh-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "System Setting",
+			"item": [
+				{
+					"name": "Change face match percentage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInNjb3BlIjoidXNlciIsImlzcyI6Ik5IRCIsImV4cCI6MTc0OTE4MjE4NCwiaWF0IjoxNzQ5MDk1Nzg0LCJ1c2VySWQiOiI3NjFjMjMxZi1mN2U4LTQ2YTctOGEzMy1jMTYyN2I5ODkzZGQiLCJqdGkiOiJhMWUxYTkyMC04NDBhLTQ3MTItODNiZC04NWNmZTgxMDhhYWUiLCJ1c2VybmFtZSI6ImFkbWluIn0.eFzWI62TnABf70Y7USC6J5_qE6xpGwIBzArvb4cO17Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/system-setting/face-match?value=85",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"system-setting",
+								"face-match"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "85"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

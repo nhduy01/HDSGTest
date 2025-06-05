@@ -1,6 +1,6 @@
 package com.example.HDSGTest.controller;
 
-import com.example.HDSGTest.IService.ISystemSettingService;
+import com.example.HDSGTest.service.SystemSettingService;
 import com.example.HDSGTest.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/api/system-setting")
 @RequiredArgsConstructor
 public class SystemSettingController {
-    private final ISystemSettingService systemSettingService;
+    private final SystemSettingService systemSettingService;
 
     @Operation(summary = "Cập nhật ngưỡng so khớp khuôn mặt")
     @PutMapping("/face-match")

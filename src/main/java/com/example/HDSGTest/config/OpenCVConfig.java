@@ -1,4 +1,4 @@
-package com.example.HDSGTest.Config;
+package com.example.HDSGTest.config;
 
 import jakarta.annotation.PostConstruct;
 import org.bytedeco.javacpp.Loader;

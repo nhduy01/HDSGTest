@@ -1,4 +1,4 @@
-package com.example.HDSGTest.Filter;
+package com.example.HDSGTest.filter;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Refill;
