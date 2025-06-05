@@ -38,18 +38,15 @@ git clone https://github.com/nhduy01/HDSGTest.git
 
 3. Cấu hình biến môi trường hệ thống:  
    Thêm `C:\opencv\build\java\x64` (hoặc `x86` tùy hệ điều hành) vào biến `PATH`.
+### 3. Cấu hình cơ sở dữ liệu
 
-### 3. Chạy script PostgreSQL
-1. Mở công cụ quản lý cơ sở dữ liệu (pgAdmin hoặc terminal).
+Trước khi chạy ứng dụng, bạn cần cấu hình kết nối đến cơ sở dữ liệu PostgreSQL:
 
-2. Kết nối đến PostgreSQL và chạy file SQL trong thư mục HDSG để:
-
-   - Tạo database.
-
-   - Tạo bảng users.
-
-   - Thêm dữ liệu mẫu.
-
+1. Mở file `src/main/resources/application.properties`.
+2. Chỉnh sửa các thông số sau cho phù hợp với hệ thống của bạn:
+spring.datasource.url=jdbc:postgresql://localhost:5432/ten_database
+spring.datasource.username=your_username
+spring.datasource.password=your_password
 ### 4. Chạy Ứng dụng
 
 ### 5. Test API với Postman
