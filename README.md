@@ -58,13 +58,16 @@ spring.datasource.password=your_password
 ### 4. Chạy Ứng dụng
 
 ### 5. Test API với Postman
+
 1. Mở Postman.
 
-2. Import file HDSGTest.postman_collection.json trong thư mục HDSG.
+2. Import file `HDSGTest.postman_collection.json` trong thư mục `HDSG`.
 
 3. Gửi request để kiểm tra các chức năng: đăng ký, đăng nhập, xem thông tin cá nhân, đổi mật khẩu...
 
-⚠️ **Lưu ý:** Sau khi đăng nhập, vui lòng sao chép token và sử dụng trong các yêu cầu tiếp theo để đảm bảo các chức năng khác hoạt động chính xác.
+⚠️ **Lưu ý:**
+- Sau khi đăng nhập, vui lòng sao chép access token và sử dụng trong các yêu cầu tiếp theo để đảm bảo các chức năng khác hoạt động chính xác (thêm vào phần Header: `Authorization: Bearer <token>`).
+- Hàm cập nhật ngưỡng so khớp khuôn mặt (`/api/system-setting/update-threshold`) yêu cầu tài khoản có quyền `ADMIN`. Vui lòng đăng nhập bằng tài khoản admin để sử dụng API này.
 
 ### 6. Tài liệu mô hình hệ thống
 
