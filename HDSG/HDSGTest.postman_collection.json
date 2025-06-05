@@ -84,7 +84,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsInNjb3BlIjoidXNlciIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTkhEIiwiZXhwIjoxNzQ5MTg3MDkxLCJpYXQiOjE3NDkxMDA2OTEsInVzZXJJZCI6IjVhZGM5ZGUwLWI1NmItNGQyZS04MGI1LTIyMTIxZDUyNWFmYyIsImp0aSI6IjVmY2Q2Yzg1LTgyOWYtNDlhMC05ZmY3LWU0ZjQwY2Q5MDU3NiIsInVzZXJuYW1lIjoidGVzdHVzZXIifQ.ZgqlX9sNLjK_onk-vvjOCsj_IZloJwxM2i422Ml7eF8",
 									"type": "string"
 								}
 							]
@@ -95,15 +95,15 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "uploadedImage",
-									"type": "file",
-									"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
-								},
-								{
-									"key": "userinfo",
-									"value": "{\n  \"fullName\": \"nguyen van a\",\n  \"email\": \"a@gmail.com\"\n}\n",
+									"key": "user",
+									"value": "{\n  \"fullName\": \"nguyen van b\",\n  \"email\": \"a@gmail.com\"\n}\n",
 									"contentType": "application/json",
 									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/nhduy/OneDrive/Pictures/anh-dep-4.webp"
 								}
 							]
 						},
@@ -239,19 +239,18 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Refresh token",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "refreshToken",
-									"value": "",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsInNjb3BlIjoidXNlciIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiTkhEIiwiZXhwIjoxNzgwNjM3MTI0LCJpYXQiOjE3NDkxMDExMjQsInVzZXJJZCI6IjVhZGM5ZGUwLWI1NmItNGQyZS04MGI1LTIyMTIxZDUyNWFmYyIsImp0aSI6ImI1NDA3ZDc0LWE3Y2YtNDEzYS05MzVhLWQxY2MxODA4YmQzOSIsInVzZXJuYW1lIjoidGVzdHVzZXIifQ.gz1NPAQGZx5s9wXv1KZFgFYmFNNt3qH12gul_UUSDio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/authenticate/refresh-token",
