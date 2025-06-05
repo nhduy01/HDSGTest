@@ -7,6 +7,9 @@ import com.example.HDSGTest.entity.SystemSetting;
 import com.example.HDSGTest.repository.SystemSettingRepository;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Slf4j
 @Service
@@ -23,7 +26,7 @@ public class SystemSettingService implements ISystemSettingService {
             setting.setValue(newValue);
             systemSettingRepository.save(setting);
         } catch (Exception e) {
-            log.error("Error in updateFaceMatchSetting", e);
+            log.error("Lỗi khi cập nhật cài đặt khớp khuôn mặt", e);
             throw e;
         }
     }

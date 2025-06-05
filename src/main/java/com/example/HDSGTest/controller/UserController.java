@@ -65,6 +65,6 @@ public class UserController {
             @RequestPart("newPassword") String newPassword)
         throws IOException {
         userService.changePassword(newPassword,avatarFile);
-        return ResponseEntity.ok(ApiResponse.<String>builder().code(0).message("Đổi mật khẩu thành công.").entity("Đổi mật khẩu thành công.").build());
+        return ResponseEntity.ok(ApiResponse.<String>builder().code(0).message("Đổi mật khẩu thành công.").build());
     }
 }

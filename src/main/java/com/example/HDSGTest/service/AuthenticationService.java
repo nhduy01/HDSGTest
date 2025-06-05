@@ -132,6 +132,7 @@ public class AuthenticationService implements IAuthenticationService {
                 .claim("userId", user.getId())
                 .claim("scope", buildScope(user))
                 .claim("username", user.getUsername())
+                .claim("roles", java.util.List.of(user.getRole().replace("ROLE_", "")))
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -141,7 +142,7 @@ public class AuthenticationService implements IAuthenticationService {
             jwsObject.sign(new MACSigner(jwtSecret.getBytes()));
             return jwsObject.serialize();
         } catch (JOSEException e) {
-            log.error("Cannot Create JWT", e);
+            log.error("Không tạo được JWT", e);
             throw new RuntimeException(e);
         }
     }
