@@ -44,9 +44,17 @@ Trước khi chạy ứng dụng, bạn cần cấu hình kết nối đến cơ
 
 1. Mở file `src/main/resources/application.properties`.
 2. Chỉnh sửa các thông số sau cho phù hợp với hệ thống của bạn:
-spring.datasource.url=jdbc:postgresql://localhost:5432/ten_database
-spring.datasource.username=your_username
+<pre>
+spring.datasource.url=jdbc:postgresql://localhost:5432/ten_database  
+spring.datasource.username=your_username  
 spring.datasource.password=your_password
+</pre>
+
+> 📝 **Ghi chú:**
+> - Hãy thay `ten_database`, `your_username` và `your_password` bằng thông tin thực tế trên máy bạn.
+> - Đảm bảo database đã được tạo trong PostgreSQL trước khi chạy ứng dụng (chỉ cần tạo database rỗng).
+> - Ứng dụng sử dụng cấu hình `spring.jpa.hibernate.ddl-auto=update` nên sẽ **tự động tạo bảng** khi chạy lần đầu.
+> - Ngoài ra, ứng dụng cũng sẽ **tự chèn một số dữ liệu mẫu** để thuận tiện cho việc kiểm thử.
 ### 4. Chạy Ứng dụng
 
 ### 5. Test API với Postman
