@@ -1,4 +1,4 @@
-package com.example.HDSGTest.Config;
+package com.example.HDSGTest.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

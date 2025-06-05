@@ -1,4 +1,4 @@
-package com.example.HDSGTest.Exception;
+package com.example.HDSGTest.exception;
 
 import lombok.Setter;
 import org.springframework.http.ResponseEntity;

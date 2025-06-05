@@ -1,6 +1,6 @@
 package com.example.HDSGTest.controller;
 
-import com.example.HDSGTest.IService.IAuthenticationService;
+import com.example.HDSGTest.service.AuthenticationService;
 import com.example.HDSGTest.dto.response.AuthenticationResponse;
 import com.example.HDSGTest.dto.request.AuthenticationRequest;
 import com.example.HDSGTest.dto.request.RefreshTokenRequest;
@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping(path = "/authenticate")
 @RequiredArgsConstructor
 public class AuthenticationController {
-    private final IAuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
     @Operation(summary = "Đăng nhập")
     @PostMapping("/login")

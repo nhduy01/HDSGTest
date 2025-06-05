@@ -1,6 +1,6 @@
-package com.example.HDSGTest.Config;
+package com.example.HDSGTest.config;
 
-import com.example.HDSGTest.Exception.ErrorCode;
+import com.example.HDSGTest.exception.ErrorCode;
 import com.example.HDSGTest.dto.response.ApiResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

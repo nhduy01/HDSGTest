@@ -1,4 +1,4 @@
-package com.example.HDSGTest.Config;
+package com.example.HDSGTest.config;
 
 import com.example.HDSGTest.entity.User;
 import com.example.HDSGTest.entity.SystemSetting;
