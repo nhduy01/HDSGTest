@@ -26,8 +26,14 @@ public class AppConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/**","/authenticate/login", "/users", "/swagger-ui/**", "/v3/api-docs/**",
-                                 "/api/users/create").permitAll()
+                        .requestMatchers(
+                            "/authenticate/login",
+                            "/authenticate/refresh-token",
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/users/getall",
+                            "/api/users/create"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())

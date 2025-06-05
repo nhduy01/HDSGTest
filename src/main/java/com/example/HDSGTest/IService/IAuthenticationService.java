@@ -22,5 +22,5 @@ public interface IAuthenticationService {
 
     AuthenticationResponse refreshToken(String refreshToken);
 
-    void logout(String authHeader);
+    void logout();
 }

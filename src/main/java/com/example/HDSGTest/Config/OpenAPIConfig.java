@@ -39,8 +39,9 @@ public class OpenAPIConfig {
     }
     private Info info() {
         Info info = new Info();
-        info.setTitle("Construction Drawing API");
+        info.setTitle("API Quản lý người dùng HDSGTest");
         info.setVersion("1.0.0");
+        info.setDescription("Tài liệu API cho hệ thống quản lý người dùng, xác thực, đổi mật khẩu, so khớp ảnh bằng OpenCV.");
         License license = new License();
         license.setName("Apache 2.0");
         license.setUrl("https://www.apache.org/licenses/LICENSE-2.0.html");
@@ -50,7 +51,7 @@ public class OpenAPIConfig {
 
     private List<Server> servers() {
         return Arrays.asList(
-                new Server().url("http://localhost:8080").description("Local server")
+                new Server().url("http://localhost:8080").description("Máy chủ cục bộ")
         );
     }
 }

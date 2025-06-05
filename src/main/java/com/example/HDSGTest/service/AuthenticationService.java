@@ -21,6 +21,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -77,7 +78,7 @@ public class AuthenticationService implements IAuthenticationService {
                 .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            log.warn("Failed login attempt for username: {}", request.getUsername());
+            log.warn("Đăng nhập thất bại cho tên đăng nhập: {}", request.getUsername());
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
 
@@ -88,7 +89,7 @@ public class AuthenticationService implements IAuthenticationService {
         user.setRefreshToken(refreshToken);
         userRepository.save(user);
 
-        log.info("User {} logged in", user.getUsername());
+        log.info("Người dùng {} đã đăng nhập", user.getUsername());
 
         return AuthenticationResponse.builder()
                 .token(token)
@@ -103,11 +104,11 @@ public class AuthenticationService implements IAuthenticationService {
         try {
             verifyToken(refreshToken);
         } catch (Exception e) {
-            log.warn("Refresh token failed for user: {}", user.getUsername());
+            log.warn("Làm mới token thất bại cho người dùng: {}", user.getUsername());
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
         String newAccessToken = generateToken(user, 1);
-        log.info("User {} refreshed token", user.getUsername());
+        log.info("Người dùng {} đã làm mới token", user.getUsername());
         return AuthenticationResponse.builder()
                 .token(newAccessToken)
                 .refreshToken(refreshToken)
@@ -148,21 +149,13 @@ public class AuthenticationService implements IAuthenticationService {
         return "user";
     }
 
-    public void logout(String authHeader) {
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String token = authHeader.substring(7);
-            try {
-                SignedJWT signedJWT = SignedJWT.parse(token);
-                String username = signedJWT.getJWTClaimsSet().getSubject();
-                User user = userRepository.findByUsername(username)
-                        .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
-                user.setRefreshToken(null);
-                userRepository.save(user);
-                log.info("User {} logged out", username);
-            } catch (Exception e) {
-                log.warn("Logout failed: invalid token");
-                throw new AppException(ErrorCode.UNAUTHENTICATED);
-            }
-        }
+    public void logout() {
+        // Lấy user hiện tại từ SecurityContextHolder
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
+        user.setRefreshToken(null);
+        userRepository.save(user);
+        log.info("Người dùng {} đã đăng xuất", username);
     }
 }
