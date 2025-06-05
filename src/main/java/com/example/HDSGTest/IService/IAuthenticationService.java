@@ -19,4 +19,8 @@ public interface IAuthenticationService {
     String generateToken(User user, int expirationDay);
 
     SignedJWT verifyToken(String token) throws JOSEException, ParseException;
+
+    AuthenticationResponse refreshToken(String refreshToken);
+
+    void logout();
 }

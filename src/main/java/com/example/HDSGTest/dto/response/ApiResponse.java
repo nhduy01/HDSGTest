@@ -12,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
     int code = 0;
-    String message = "Undefined Exception";
+    String message = "Lỗi không xác định";
     T entity;
 }

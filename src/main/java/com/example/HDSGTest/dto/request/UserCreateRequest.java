@@ -3,55 +3,24 @@ package com.example.HDSGTest.dto.request;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
+@Data
 public class UserCreateRequest {
 
+    @NotBlank(message = "Tên đăng nhập là bắt buộc")
+    @Size(max = 50, message = "Tên đăng nhập tối đa 50 ký tự")
+    private String username;
 
-        @NotBlank
-        @Size(max = 50)
-        private String username;
+    @NotBlank(message = "Email là bắt buộc")
+    @Email(message = "Email không hợp lệ")
+    @Size(max = 100, message = "Email tối đa 100 ký tự")
+    private String email;
 
-        @NotBlank
-        @Email
-        @Size(max = 100)
-        private String email;
+    @NotBlank(message = "Mật khẩu là bắt buộc")
+    @Size(min = 6, max = 255, message = "Mật khẩu phải từ 6 đến 255 ký tự")
+    private String password;
 
-        @NotBlank
-        @Size(min = 6, max = 255)
-        private String password;
-
-        @Size(max = 100)
-        private String fullName;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+    @Size(max = 100, message = "Họ tên tối đa 100 ký tự")
+    private String fullName;
 }

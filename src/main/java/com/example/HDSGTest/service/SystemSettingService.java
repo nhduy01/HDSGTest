@@ -5,10 +5,14 @@ import com.example.HDSGTest.Exception.ErrorCode;
 import com.example.HDSGTest.IService.ISystemSettingService;
 import com.example.HDSGTest.entity.SystemSetting;
 import com.example.HDSGTest.repository.SystemSettingRepository;
-import com.example.HDSGTest.repository.UserHistoryRepository;
-import com.example.HDSGTest.repository.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 
+@Slf4j
+@Service
 public class SystemSettingService implements ISystemSettingService {
     private SystemSettingRepository systemSettingRepository;
 
@@ -17,8 +21,13 @@ public class SystemSettingService implements ISystemSettingService {
     }
 
     public void updateFaceMatchSetting(String newValue) {
-        SystemSetting setting = systemSettingRepository.findByKey("face_match").orElseThrow(() -> new AppException(ErrorCode.SETTING_NOT_FOUND));
-        setting.setValue(newValue);
-        systemSettingRepository.save(setting);
+        try {
+            SystemSetting setting = systemSettingRepository.findByKey("face_match").orElseThrow(() -> new AppException(ErrorCode.SETTING_NOT_FOUND));
+            setting.setValue(newValue);
+            systemSettingRepository.save(setting);
+        } catch (Exception e) {
+            log.error("Lỗi khi cập nhật cài đặt khớp khuôn mặt", e);
+            throw e;
+        }
     }
 }

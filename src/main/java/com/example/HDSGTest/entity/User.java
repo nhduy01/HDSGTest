@@ -41,6 +41,9 @@ public class User {
     @Column(name = "role", length = 50)
     private String role;
 
+    @Column(name = "refresh_token", length = 512)
+    private String refreshToken;
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

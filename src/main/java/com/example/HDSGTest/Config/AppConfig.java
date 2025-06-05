@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
@@ -16,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.crypto.spec.SecretKeySpec;
 
 @Configuration
+@EnableMethodSecurity(prePostEnabled = true)
 public class AppConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -26,8 +28,14 @@ public class AppConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/**","/authenticate/login", "/users", "/swagger-ui/**", "/v3/api-docs/**",
-                                 "/api/users/create").permitAll()
+                        .requestMatchers(
+                            "/authenticate/login",
+                            "/authenticate/refresh-token",
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/users/getall"
+                        ).permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/users").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())
